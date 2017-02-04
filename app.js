@@ -9,7 +9,8 @@ dotenv.config({ silent: true })
 const app = express();
 const PORT = process.env.PORT
 
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '500mb', type: 'application/json'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/enroll', enroll);

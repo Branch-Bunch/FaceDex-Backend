@@ -6,7 +6,8 @@ let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 
 let enroll = require('./routes/enroll');
-let recognize = require 
+let recognize = require ('./routes/recognize');
+
 let app = express();
 
 // view engine setup

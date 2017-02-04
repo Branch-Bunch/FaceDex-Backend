@@ -20,16 +20,18 @@ function enroll(name, img) {
 
   rp(options) 
     .then((APIresponse) => {
-      res.send(APIresponse)
+      return APIresponse
     })
     .catch((err) => {
-      res.send(err)
+      return err
     })
 }
 
 router.post('/', (req, res) => {
-	const { name, img, links } = req.params
-  enroll(name, img)
+  const { name, img, links } = req.params
+  response = enroll(name, img)
+  console.log(response)
+  res.send(response)
 })
 
 module.exports = router;

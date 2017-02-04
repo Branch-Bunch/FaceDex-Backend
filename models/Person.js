@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 const PersonSchema = new Schema({
   name: { type: String, required: true },
-  links: { type: LinkSchema, required: true } 
+  links: { type: LinkSchema, required: false } 
 })
 
 const LinkSchema = new Schema({

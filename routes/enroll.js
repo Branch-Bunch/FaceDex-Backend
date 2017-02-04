@@ -3,17 +3,21 @@ let rp = require('request-promise')
 
 let router = express.Router();
 
-function enroll(name, img) {
+
+
+router.post('/', (req, res) => {
   const options = {
-    uri: 'api.kairos.com',
+    method: 'POST',
+    uri: 'http://api.kairos.com/enroll',
     headers: {
+      'content-type': 'application/json',
       'app_id': process.env.KAIROS_ID,
       'app_key': process.env.KAIROS_KEY
     },
     body: {
-      image: img,
-      subject_id: name,
-      gallery_name: 'facedex'
+      'image': req.body.img,
+      'subject_id': req.body.name,
+      'gallery_name': 'facedex'
     },
     json: true
   }
@@ -25,11 +29,6 @@ function enroll(name, img) {
     .catch((err) => {
       res.send(err)
     })
-}
-
-router.post('/', (req, res) => {
-	const { name, img, links } = req.params
-  enroll(name, img)
 })
 
 module.exports = router;

@@ -12,8 +12,8 @@ const PORT = process.env.PORT
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/', (req, res) => res.send({ success: true }))
 app.use('/enroll', enroll);
+app.use('/tesst', (req, res) => res.send({ success: true }))
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`)

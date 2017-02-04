@@ -27,7 +27,7 @@ function enroll(name, img) {
     })
 }
 
-router.post('/enroll', (req, res) => {
+router.post('/', (req, res) => {
 	const { name, img, links } = req.params
   enroll(name, img)
 })

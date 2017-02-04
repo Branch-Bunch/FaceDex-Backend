@@ -19,8 +19,19 @@ router.post('/', (req, res) => {
     json: true
   }
   rp(options) 
-    .then((APIresponse) => {
-      res.send(APIresponse)
+  .then((APIresponse) => {
+    if(APIresponse.Errors){
+      response = {
+        success: false,
+        error: APIresponse.Errors[0].Message
+      }
+    } else{
+      response = {
+        success: true,
+        error: null
+      }
+    }
+      res.send(response)
     })
     .catch((err) => {
       return err

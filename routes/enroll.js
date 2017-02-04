@@ -24,10 +24,10 @@ router.post('/', (req, res) => {
 
   rp(options) 
     .then((APIresponse) => {
-      res.send(APIresponse)
+      return APIresponse
     })
     .catch((err) => {
-      res.send(err)
+      return err
     })
 })
 

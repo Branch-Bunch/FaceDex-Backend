@@ -1,9 +1,6 @@
-let express = require('express');
-let rp = require('request-promise')
-
-let router = express.Router();
-
-
+const express = require('express');
+const rp = require('request-promise')
+const router = express.Router();
 
 router.post('/', (req, res) => {
   const options = {
@@ -21,10 +18,9 @@ router.post('/', (req, res) => {
     },
     json: true
   }
-
   rp(options) 
     .then((APIresponse) => {
-      return APIresponse
+      res.send(APIresponse)
     })
     .catch((err) => {
       return err

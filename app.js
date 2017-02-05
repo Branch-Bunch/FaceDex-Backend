@@ -1,11 +1,13 @@
 const dotenv = require('dotenv')
 const express = require('express')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 
 const enroll = require('./routes/enroll')
 const recognize = require ('./routes/recognize')
 const remove = require('./routes/remove')
 
+mongoose.Promise = Promise
 dotenv.config({ silent: true })
 const app = express();
 const PORT = process.env.PORT

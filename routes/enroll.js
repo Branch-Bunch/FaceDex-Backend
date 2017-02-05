@@ -18,24 +18,22 @@ router.post('/', (req, res) => {
     },
     json: true
   }
+
   rp(options) 
   .then((APIresponse) => {
-    if(APIresponse.Errors){
-      response = {
-        success: false,
-        error: APIresponse.Errors[0].Message
-      }
-    } else{
-      response = {
-        success: true,
-        error: null
-      }
+    const response = {
+      success: true,
+      error: null
     }
-      res.send(response)
+
+    if (APIresponse.Errors) {
+      response.success = false
+      response.error = APIresponse.Errors[0].Message
+    }
+
+    res.send(response)
     })
-    .catch((err) => {
-      return err
-    })
+    .catch(err => res.status(400).send(err))
 })
 
 module.exports = router;

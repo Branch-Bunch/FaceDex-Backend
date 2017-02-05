@@ -7,7 +7,7 @@ router.post('/', (req, res) => {
     method: 'POST',
     uri: 'http://api.kairos.com/recognize',
     headers: {
-      content-type: 'application/json',
+      'content-type': 'application/json',
       app_id: process.env.KAIROS_ID,
       app_key: process.env.KAIROS_KEY
     },

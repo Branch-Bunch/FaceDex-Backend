@@ -44,6 +44,7 @@ router.post('/', (req, res) => {
           .catch(err => console.log(err))
         })
       })
+      console.log(peopleList)
       return Promise.all(peopleList)
     })
     .then(people => res.send({ people, error: null }))

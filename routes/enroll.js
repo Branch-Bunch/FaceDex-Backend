@@ -30,7 +30,6 @@ router.post('/', (req, res) => {
         response.success = false,
         respons.error = APIresponse.Errors[0].Message
     }
-    res.send(response)
 
     const person = new Person({
       name: name,
@@ -42,7 +41,8 @@ router.post('/', (req, res) => {
         url: req.body.link[i]
       })
     }
-    person.save()
+    return person.save()
+    res.send(response)
   })
   .catch(err => res.status(400).send(err))
 })

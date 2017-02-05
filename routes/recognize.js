@@ -47,7 +47,10 @@ router.post('/', (req, res) => {
       return Promise.all(peopleList)
     })
     .then(people => res.send({ people, error: null }))
-    .catch(err => res.status(400).send(err))
+    .catch(err => res.send({
+      people: [],
+      error: 'API Broke :('
+    }))
 })
 
 module.exports = router;

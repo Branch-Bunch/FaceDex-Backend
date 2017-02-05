@@ -34,10 +34,11 @@ router.post('/', (req, res) => {
   })
   .then((person) => {
     if (!person) {
+      const githubHandle = "@" + handle;
       const newPerson = new Person({
         name,
         github: {
-          String("@" + handle),
+          handle,
           url: `https://github.com/${handle}`
         }, 
       })

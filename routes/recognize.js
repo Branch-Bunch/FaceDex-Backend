@@ -30,15 +30,17 @@ router.post('/', (req, res) => {
       console.log(APIresponse.images)
       const namesList = APIresponse.images.map(face => face.transaction.subject_id)
       console.log(namesList)
-      let people = []
-      namesList.forEach((name) => {
-        Person.findOne({ name })
+      const peopleList = namesList.map((name) => {
+        return new Promise((resolve, reject) => {
+          Person.findOne({ name })
           .lean()
-          .then(person => people.push(person))
+          .then(person => resolve(person))
+        })
       })
-      console.log(people)
-      res.send({ people, error: null })
+      console.log(peopleList)
+      return Promise.all(peopleList)
     })
+    .then(people => res.send({ people, error: null }))
     .catch(err => res.status(400).send(err))
 })
 

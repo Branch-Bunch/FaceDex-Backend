@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 
 const enroll = require('./routes/enroll')
 const recognize = require ('./routes/recognize')
+const remove = require('./routes/remove')
 
 dotenv.config({ silent: true })
 const app = express();
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/enroll', enroll)
 app.use('/recognize', recognize)
+app.use('/remove', remove)
 app.use('/test', (req, res) => res.send({ success: true }))
 
 app.listen(PORT, () => {

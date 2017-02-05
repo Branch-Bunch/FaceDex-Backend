@@ -9,6 +9,7 @@ const remove = require('./routes/remove')
 
 mongoose.Promise = Promise
 dotenv.config({ silent: true })
+mongoose.connect(process.env.MONGODB_URI)
 const app = express();
 const PORT = process.env.PORT
 

@@ -12,6 +12,6 @@ const PersonSchema = new Schema({
   links: { type: LinkSchema, required: false } 
 })
 
-const Person = mongoose.model('Person', PersonSchema, 'Persons')
+const Person = mongoose.model('Person', PersonSchema, 'Person')
 
 module.exports = Person

@@ -31,12 +31,15 @@ router.post('/', (req, res) => {
       const namesList = APIresponse.images.map(face => face.transaction.subject_id)
       console.log(namesList)
       const peopleList = namesList.map((name) => {
-        return Person.findOne({ name })
+        return Person.findOne({ name }).lean()
       })
       console.log(peopleList)
       return Promise.all(peopleList)
     })
-    .then(people => res.send({ people, error: null}))
+    .then((people) => {
+      console.log(people)
+      res.send({ people, error: null })
+    })
     .catch(err => res.status(400).send(err))
 })
 

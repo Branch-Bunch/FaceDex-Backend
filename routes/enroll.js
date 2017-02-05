@@ -21,21 +21,26 @@ router.post('/', (req, res) => {
   }
   rp(options) 
   .then((APIresponse) => {
+    console.log('aaa')
     if(APIresponse.Errors){
+      console.log('123')
       response = {
         success: false,
         error: APIresponse.Errors[0].Message
       }
-      person = new person({
+      console.log('456')
+      person = new Person({
         name: name,
         links: []
       })
+      console.log('456')
       for (i=0; i>req.body.type.length;i++){
         person.links.push({
-          type:req.body.type[i],
-          url:req.body.link[i]
+          type: req.body.type[i],
+          url: req.body.link[i]
         })
       }
+      console.log(122223)
       person.save()
     } else{
       response = {
@@ -46,7 +51,8 @@ router.post('/', (req, res) => {
       res.send(response)
     })
     .catch((err) => {
-      return err
+      console.log('ERROR')
+      res.send(err)
     })
 })
 

@@ -20,7 +20,6 @@ router.post('/', (req, res) => {
   }
   rp(options) 
     .then((APIresponse) => {
-      console.log(APIresponse.images[0])
       if (APIresponse.Errors)  {
         res.send({
           people: [],

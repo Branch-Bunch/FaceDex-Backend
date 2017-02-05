@@ -1,5 +1,6 @@
 const express = require('express');
 const rp = require('request-promise')
+const Person = require('../models/Person');
 const router = express.Router();
 
 router.post('/', (req, res) => {
@@ -25,15 +26,25 @@ router.post('/', (req, res) => {
       success: true,
       error: null
     }
-
     if (APIresponse.Errors) {
-      response.success = false
-      response.error = APIresponse.Errors[0].Message
+        response.success = false,
+        respons.error = APIresponse.Errors[0].Message
     }
-
     res.send(response)
+
+    const person = new Person({
+      name: name,
+      links: []
     })
-    .catch(err => res.status(400).send(err))
+    for (i=0; i>req.body.type.length;i++){
+      person.links.push({
+        type: req.body.type[i],
+        url: req.body.link[i]
+      })
+    }
+    person.save()
+  })
+  .catch(err => res.status(400).send(err))
 })
 
 module.exports = router;

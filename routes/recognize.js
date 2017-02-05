@@ -22,12 +22,12 @@ router.post('/', (req, res) => {
     .then((APIresponse) => {
       const namesList = APIresponse.images.map(face => face.transaction.subject_id)
       console.log('namesList is: ' + namesList)
-      const peoplesList = namesList.map(name => {
+      const peopleList = namesList.map(name => {
         console.log('looking in db for: ' + name)
         return Person.findOne({ name })
         .lean()
       })
-      return Promise.all(peoplesList)
+      return Promise.all(peopleList)
     })
     .then(people => res.send(people))
     .catch(err => res.status(400).send(err))

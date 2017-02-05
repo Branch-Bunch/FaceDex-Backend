@@ -35,6 +35,7 @@ router.post('/', (req, res) => {
           Person.findOne({ name })
           .lean()
           .then(person => resolve(person))
+          .catch(err => console.log(err))
         })
       })
       console.log(peopleList)

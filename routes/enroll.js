@@ -30,15 +30,16 @@ router.post('/', (req, res) => {
       })
       return
     }
-    console.log('before hit')
     return Person.findOne({ name }).lean()
   })
   .then((person) => {
-    console.log('hit')
     if (!person) {
       const newPerson = new Person({
         name,
-        github, 
+        github: {
+          handle: name,
+          url: `https://github.com/${handle}`
+        }, 
       })
       return newPerson.save()
     }

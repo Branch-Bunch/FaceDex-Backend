@@ -37,7 +37,7 @@ router.post('/', (req, res) => {
       const newPerson = new Person({
         name,
         github: {
-          handle,
+          String("@" + handle),
           url: `https://github.com/${handle}`
         }, 
       })

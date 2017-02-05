@@ -4,7 +4,7 @@ const Person = require('../models/Person');
 const router = express.Router();
 
 router.post('/', (req, res) => {
-  const { name, image, github } = req.body
+  const { name, image, handle } = req.body
   const options = {
     method: 'POST',
     uri: 'http://api.kairos.com/enroll',
@@ -37,7 +37,7 @@ router.post('/', (req, res) => {
       const newPerson = new Person({
         name,
         github: {
-          handle: github,
+          handle,
           url: `https://github.com/${handle}`
         }, 
       })

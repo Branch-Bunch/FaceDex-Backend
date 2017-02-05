@@ -1,3 +1,9 @@
+/*
+ *  NEVER USE THIS ENDPOINT UNLESS YOU KNOW WHAT YOUR DOING
+ *  THIS ENDPOINT IS FOR DEVELOPMENT PURPOSSES ONLY
+ *  LITERALLY DOES rm -rf  on database   
+ *
+ */
 const express = require('express');
 const rp = require('request-promise')
 const router = express.Router();

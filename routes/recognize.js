@@ -20,16 +20,22 @@ router.post('/', (req, res) => {
   }
   rp(options) 
     .then((APIresponse) => {
-      if (APIresponse.Errors) {
+      console.log(APIresponse.images[0])
+      if (APIresponse.Errors)  {
         res.send({
           people: [],
           error: APIresponse.Errors[0].Message
         })
         return
       }
-      console.log(APIresponse.images)
+      if(APIresponse.images[0].transaction.status === 'failure') {
+        res.send({
+          people: [],
+          error: APIresponse.images[0].transaction.message,
+        })
+        return
+      }
       const namesList = APIresponse.images.map(face => face.transaction.subject_id)
-      console.log(namesList)
       const peopleList = namesList.map((name) => {
         return new Promise((resolve, reject) => {
           Person.findOne({ name })
@@ -38,7 +44,6 @@ router.post('/', (req, res) => {
           .catch(err => console.log(err))
         })
       })
-      console.log(peopleList)
       return Promise.all(peopleList)
     })
     .then(people => res.send({ people, error: null }))

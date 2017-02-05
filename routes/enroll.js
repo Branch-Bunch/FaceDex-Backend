@@ -19,7 +19,6 @@ router.post('/', (req, res) => {
     },
     json: true
   }
-      console.log(links[0][0])
   rp(options) 
   .then((APIresponse) => {
     if(APIresponse.Errors){

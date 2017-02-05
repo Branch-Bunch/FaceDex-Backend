@@ -37,6 +37,7 @@ router.post('/', (req, res) => {
       name: name,
       links: []
     })
+
     for (i=0; i>req.body.type.length;i++){
       person.links.push({
         type:req.body.type[i],

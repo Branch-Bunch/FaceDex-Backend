@@ -3,7 +3,6 @@ const rp = require('request-promise')
 const router = express.Router();
 
 router.post('/', (req, res) => {
-  console.log(req.body)
   const options = {
     method: 'POST',
     uri: 'http://api.kairos.com/enroll',

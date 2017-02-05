@@ -4,9 +4,11 @@ const Person = require('../models/Person');
 const router = express.Router();
 
 router.post('/', (req, res) => {
-  req.body.name = String(req.body.name).replace(' ', '_')
-    .toLowerCase()
-  console.log(req.body.name)
+  let links = req.body.type.map((element, index) => [ {
+    "type": element,
+    "url": req.body.link[index]
+  } ])
+  console.log(links)
   const options = {
     method: 'POST',
     uri: 'http://api.kairos.com/enroll',
@@ -22,7 +24,6 @@ router.post('/', (req, res) => {
     },
     json: true
   }
-
   rp(options) 
   .then((APIresponse) => {
     const response = {

@@ -31,10 +31,10 @@ router.post('/', (req, res) => {
       const namesList = APIresponse.images.map(face => face.transaction.subject_id)
       console.log(namesList)
       const peopleList = namesList.map((name) => {
-        return Person.findOne({ name }).lean()
+        Person.findOne({ name })
+          .lean()
+          .then(person => person)
       })
-      console.log(peopleList)
-      return Promise.all(peopleList)
     })
     .then((people) => {
       console.log(people)

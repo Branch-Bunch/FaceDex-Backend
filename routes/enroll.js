@@ -3,6 +3,7 @@ const rp = require('request-promise')
 const router = express.Router();
 
 router.post('/', (req, res) => {
+  console.log(req.body)
   const options = {
     method: 'POST',
     uri: 'http://api.kairos.com/enroll',
@@ -12,7 +13,7 @@ router.post('/', (req, res) => {
       'app_key': process.env.KAIROS_KEY
     },
     body: {
-      'image': req.body.img,
+      'image': req.body.image,
       'subject_id': req.body.name,
       'gallery_name': 'facedex'
     },

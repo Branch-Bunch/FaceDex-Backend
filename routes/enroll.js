@@ -34,7 +34,8 @@ router.post('/', (req, res) => {
   })
   .then((person) => {
     if (!person) {
-      const githubHandle = "@" + handle;
+      let githubHandle = "@" + handle;
+      console.log(githubHandle)
       const newPerson = new Person({
         name,
         github: {

@@ -31,9 +31,9 @@ router.post('/', (req, res) => {
       const namesList = APIresponse.images.map(face => face.transaction.subject_id)
       console.log(namesList)
       const peopleList = namesList.map((name) => {
-        console.log(name)
         return Person.findOne({ name }).lean()
       })
+      console.log(peopleList)
       return Promise.all(peopleList)
     })
     .then(people => res.send({ people, error: null}))

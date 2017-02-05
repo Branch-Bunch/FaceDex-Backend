@@ -4,6 +4,9 @@ const Person = require('../models/Person');
 const router = express.Router();
 
 router.post('/', (req, res) => {
+  req.body.name = String(req.body.name).replace(' ', '_')
+    .toLowerCase()
+  console.log(req.body.name)
   const options = {
     method: 'POST',
     uri: 'http://api.kairos.com/enroll',

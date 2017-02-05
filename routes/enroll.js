@@ -4,11 +4,6 @@ const Person = require('../models/Person');
 const router = express.Router();
 
 router.post('/', (req, res) => {
-  let links = req.body.type.map((element, index) => [ {
-    "type": element,
-    "url": req.body.link[index]
-  } ])
-  console.log(links)
   const options = {
     method: 'POST',
     uri: 'http://api.kairos.com/enroll',
@@ -32,6 +27,17 @@ router.post('/', (req, res) => {
         success: false,
         error: APIresponse.Errors[0].Message
       }
+      person = new person({
+        name: name,
+        links: []
+      })
+      for (i=0; i>req.body.type.length;i++){
+        person.links.push({
+          type:req.body.type[i],
+          url:req.body.link[i]
+        })
+      }
+      person.save()
     } else{
       response = {
         success: true,

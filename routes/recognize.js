@@ -1,6 +1,10 @@
 const express = require('express');
 const rp = require('request-promise')
+const mongoose = require('mongoose')
+const Person = require('../models/Person')
 const router = express.Router();
+mongoose.Promise = Promise
+
 
 router.post('/', (req, res) => {
   const options = {
@@ -19,7 +23,17 @@ router.post('/', (req, res) => {
   }
   rp(options) 
     .then((APIresponse) => {
-      res.send(APIresponse)
+      const namesList = APIresponse.images.map(face => {
+        return face.transaction.subject_id
+      })
+      console.log('namesList is: ' + namesList)
+      const peoplesList = namesList.map(name => {
+        console.log('looking in db for: ' + name)
+        Person.findOne({ name })
+        .lean()
+      })
+      console.log(peoplesList)
+      res.send(peoplesList)
     })
     .catch((err) => {
       return err

@@ -41,6 +41,10 @@ router.post('/', (req, res) => {
       })
       return newPerson.save()
     }
+    res.send({
+      success: true,
+      error: null
+    })
   })
   .then(() => res.send({
     success: true,

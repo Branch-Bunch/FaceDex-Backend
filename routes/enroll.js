@@ -4,6 +4,7 @@ const Person = require('../models/Person');
 const router = express.Router();
 
 router.post('/', (req, res) => {
+  const { name, image, github } = req.body
   const options = {
     method: 'POST',
     uri: 'http://api.kairos.com/enroll',
@@ -13,8 +14,8 @@ router.post('/', (req, res) => {
       'app_key': process.env.KAIROS_KEY
     },
     body: {
-      'image': req.body.image,
-      'subject_id': req.body.name,
+      'image': image,
+      'subject_id': name,
       'gallery_name': 'facedex'
     },
     json: true
@@ -22,27 +23,28 @@ router.post('/', (req, res) => {
 
   rp(options) 
   .then((APIresponse) => {
-    const response = {
+    if (APIresponse.Errors) {
+      res.send({
+        success: false,
+        error: APIresponse.Errors[0].Message
+      })
+      return
+    }
+    
+    return Person.findOne({ name }).lean()
+  })
+  .then((person) => {
+    if (!person) {
+      const newPerson = new Person({
+        name,
+        github, 
+      })
+      return newPerson.save()
+    }
+    res.send({
       success: true,
       error: null
-    }
-    if (APIresponse.Errors) {
-        response.success = false,
-        respons.error = APIresponse.Errors[0].Message
-    }
-
-    const person = new Person({
-      name: name,
-      links: []
     })
-    for (i=0; i>req.body.type.length;i++){
-      person.links.push({
-        type: req.body.type[i],
-        url: req.body.link[i]
-      })
-    }
-    return person.save()
-    res.send(response)
   })
   .catch(err => res.status(400).send(err))
 })

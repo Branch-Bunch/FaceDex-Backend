@@ -27,8 +27,8 @@ router.post('/', (req, res) => {
         })
         return
       }
-
-      const namesList = APIresponse.images.map(face => face.transaction.subject)
+      console.log(APIresponse.images)
+      const namesList = APIresponse.images.map(face => face.transaction.subject_id)
       console.log(namesList)
       const peopleList = namesList.map((name) => {
         console.log(name)

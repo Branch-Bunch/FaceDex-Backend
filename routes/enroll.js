@@ -26,23 +26,20 @@ router.post('/', (req, res) => {
       success: true,
       error: null
     }
-
     if (APIresponse.Errors) {
-      response.success = false
-      response.error = APIresponse.Errors[0].Message
+        response.success = false,
+        respons.error = APIresponse.Errors[0].Message
     }
-
     res.send(response)
 
-    const person = new person({
+    const person = new Person({
       name: name,
       links: []
     })
-
     for (i=0; i>req.body.type.length;i++){
       person.links.push({
-        type:req.body.type[i],
-        url:req.body.link[i]
+        type: req.body.type[i],
+        url: req.body.link[i]
       })
     }
     person.save()

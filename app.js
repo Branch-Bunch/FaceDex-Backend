@@ -7,10 +7,12 @@ const enroll = require('./routes/enroll')
 const recognize = require ('./routes/recognize')
 const remove = require('./routes/remove')
 
-mongoose.Promise = Promise
+const app = express();
+
 dotenv.config({ silent: true })
 mongoose.connect(process.env.MONGODB_URI)
-const app = express();
+mongoose.Promise = Promise
+
 const PORT = process.env.PORT
 
 app.use(bodyParser.json({limit: '500mb', type: 'application/json'}));

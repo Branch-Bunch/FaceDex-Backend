@@ -1,6 +1,7 @@
 # FaceDex-Backend [IN DEVELOPMENT]
-![FaceDex screenshot](https://raw.githubusercontent.com/Branch-Bunch/FaceDex-Backend/master/Screenshot.jpg)
 PokeDex for people 
+![FaceDex screenshot](https://raw.githubusercontent.com/Branch-Bunch/FaceDex-Backend/master/Screenshot.jpg)
+
 
 ## Inspiration
 Pokemon and being awkward developers.

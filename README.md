@@ -1,5 +1,5 @@
 # FaceDex-Backend [IN DEVELOPMENT]
-![FaceDex screenshot](https://raw.githubusercontent.com/Branch-Bunch/FaceDex-Backend/master/Screenshot.jpg)
+<img src='https://raw.githubusercontent.com/Branch-Bunch/FaceDex-Backend/master/Screenshot.jpg' alt='FaceDex screenshot' width=300/>
 
 PokeDex for people 
 

@@ -1,4 +1,6 @@
 # FaceDex-Backend [IN DEVELOPMENT]
+<img src='https://raw.githubusercontent.com/Branch-Bunch/FaceDex-Backend/master/Screenshot.jpg' alt='FaceDex screenshot' width=300/>
+
 PokeDex for people 
 
 ## Inspiration

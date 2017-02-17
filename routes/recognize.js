@@ -51,6 +51,7 @@ router.post('/', (req, res) => {
       people: [],
       error: 'API Broke :('
     }))
+    console.log(people)
 })
 
 module.exports = router;

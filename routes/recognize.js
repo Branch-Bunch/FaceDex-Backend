@@ -36,12 +36,9 @@ router.post('/', (req, res) => {
       }
       const namesList = APIresponse.images.map(face => face.transaction.subject_id)
       const peopleList = namesList.map((name) => {
-        return new Promise((resolve, reject) => {
-          Person.findOne({ name })
+        return Person.findOne({ name })
           .lean()
-          .then(person => resolve(person))
-          .catch(err => console.log(err))
-        })
+          .exec()
       })
       console.log(peopleList)
       return Promise.all(peopleList)
